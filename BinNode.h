@@ -4,18 +4,44 @@
 
 #ifndef CH05_BINTREE_BINNODE_H
 #define CH05_BINTREE_BINNODE_H
+#define BinNodePosi(T) BinNode<T>*   //指向binnode节点的类型——节点位置"指针"类型
+#define stature(p) ((p)?(p)->height:-1)     // 节点高度（空树高度为-1）
+typedef enum {
+    RB_RED, RB_BLACK
+} RBColor; // 节点颜色
 
 template<typename T>
-class BinNode {
-    BinNode<T> *parent, *lChild, *rChild;
+struct BinNode {
+    //成员声明
+    BinNodePosi(T)parent;
+    BinNodePosi(T)lChild;
+    BinNodePosi(T)rChild;
     T data;
     int height;//高度
-    int size(){
-        int s=1;
-        if(lChild) s+=lChild->size();//递归地求解，直到达到叶端
-        if(rChild) s+=rChild->size();//递归地求解，直到达到叶端
+    int npl;//NULL Path length（左式堆）
+    RBColor color;//颜色（红黑树）
+
+
+
+
+    //--------构造函数---------
+    BinNode() : parent(nullptr), lChild(nullptr), rChild(nullptr), height(0), npl(1), color(RB_RED) {};//无参数的空节点
+    BinNode(T e, BinNodePosi(T)p = nullptr, BinNodePosi(T)lChild = nullptr, BinNodePosi(T)rChild = NULL, int h = 0,
+            int l = 1,RBColor c=RB_RED) :
+            data(e), parent(p), lChild(lChild), rChild(rChild), height(h), npl(l), color(c) {}
+    //------------------------
+
+
+
+
+    //--------操作接口---------
+    int size() {
+        int s = 1;
+        if (lChild) s += lChild->size();//递归地求解，直到达到叶端
+        if (rChild) s += rChild->size();//递归地求解，直到达到叶端
         return s;
     }//子树的规模
+
     //作为左右子节点插入
     BinNode<T> *insertAsLC(T const &e) {
         //对传入的参数e进行"封装"，使之成为一个新的节点
@@ -38,6 +64,14 @@ class BinNode {
     void travIn(VST &t);//子树中序遍历
     template<typename VST>
     void travPost(VST &t);//子树后序遍历
+
+    //运算符重载
+    bool operator<(BinNode const &bn) { return data < bn.data; }
+    bool operator==(BinNode const &bn) { return data == bn.data; }
+    bool operator!=(BinNode const &bn) { return data != bn.data; }
+    bool operator>(BinNode const &bn) { return data > bn.data; }
+    bool operator>=(BinNode const &bn) { return data >= bn.data; }
+    bool operator<=(BinNode const &bn) { return data <= bn.data; }
 };
 
 #endif //CH05_BINTREE_BINNODE_H
