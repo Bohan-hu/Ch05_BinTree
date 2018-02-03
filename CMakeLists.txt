@@ -3,5 +3,5 @@ project(Ch05_BinTree)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES main.cpp BinNode.h BinTree.h)
+set(SOURCE_FILES main.cpp BinNode.h BinTree.h Stack.h)
 add_executable(Ch05_BinTree ${SOURCE_FILES} main.cpp BinNode.h)

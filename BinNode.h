@@ -4,7 +4,7 @@
 
 #ifndef CH05_BINTREE_BINNODE_H
 #define CH05_BINTREE_BINNODE_H
-#define BinNodePosi(T) BinNode<T>*   //指向binnode节点的类型——节点位置"指针"类型
+#define BinNodePosi(T) BinNode<T>*//指向binnode节点的类型——节点位置"指针"类型
 //BinNode状态及其性质的判断
 #define IsRoot(x) ( !(x).parent )
 #define IsLChild(x) ( !IsRoot(x) && ( &(x) == (x).parent -> lChild))
@@ -57,7 +57,7 @@ struct BinNode {
 
     //作为左右子节点插入,对传入的参数e进行"封装"，使之成为当前节点的一个新的子节点
     BinNode<T> *insertAsLC(T const &e) {
-        lChild = new BinNode(e, this);
+        lChild = new BinNode(e, this);//调用构造函数，传入data的值e，和this指针（表示逆向的连接，指定当前节点为父节点）
         return lChild;
     };
 
