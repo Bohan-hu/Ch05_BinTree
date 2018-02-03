@@ -1,3 +1,5 @@
+#ifndef STACK
+#define STACK
 #include <iostream>
 #include <string>
 
@@ -70,3 +72,5 @@ public:
         std::cout << "<<<BOTTOM" << std::endl;
     }
 };
+
+#endif

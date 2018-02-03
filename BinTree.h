@@ -81,14 +81,14 @@ public:
 
     BinTree<T> *secede(BinNodePosi(T)x);//把以x为节点的子树从其中摘除，并返回原有子树的根节点
 
-    template<typename VST>
-    void travLevel(VST &visit);//层次遍历
-    template<typename VST>
-    void travPre_Recursive(BinNodePosi(T)x, VST &visit) { //先序遍历（先遍历根，再遍历左，再遍历右）第1版代码（递归）
+
+    void travLevel();//层次遍历
+
+    void travPre_Recursive(BinNodePosi(T)x) { //先序遍历（先遍历根，再遍历左，再遍历右）第1版代码（递归）
         if (!x) return;//基线条件（要求访问的节点为空）
-        visit(x->data);
-        travPre_Recursive(x->lChild, visit);
-        travPre_Recursive(x->rChild, visit);
+        std::cout << x->data << std::endl;
+        travPre_Recursive(x->lChild);
+        travPre_Recursive(x->rChild);
     }
 
 
