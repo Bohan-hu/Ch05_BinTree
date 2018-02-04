@@ -22,9 +22,10 @@ int main() {
     BinNodePosi(char)p = tree.insertAsRC(n, 'p');
     BinNodePosi(char)o = tree.insertAsLC(p, 'o');
 
-    tree.travPre_Recursive(i);
-
-
+    //tree.travPre_Recursive(i);
+    std::cout << std::endl;
+    tree.travPre_Stack1(i);
+    tree.
 
     return 0;
 }

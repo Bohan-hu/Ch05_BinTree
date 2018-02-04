@@ -16,6 +16,7 @@ public:
         _elem = new T[DEFAULT_CAPACITY];
         for (int i = 0; i < DEFAULT_CAPACITY; i++) _elem[i] = 0;
         _size = 0;
+        _capacity = 3;
     }
 
     ~Stack() { delete[]_elem; }

@@ -86,11 +86,41 @@ public:
 
     void travPre_Recursive(BinNodePosi(T)x) { //先序遍历（先遍历根，再遍历左，再遍历右）第1版代码（递归）
         if (!x) return;//基线条件（要求访问的节点为空）
-        std::cout << x->data << std::endl;
+        std::cout << x->data << " ";// << std::endl;
         travPre_Recursive(x->lChild);
         travPre_Recursive(x->rChild);
     }
 
+    void travPre_Stack1(BinNodePosi(T)x) {  //先序遍历（迭代版1）
+        Stack<BinNodePosi(T)> S; //引入记录节点位置的辅助栈
+        if (x) { // 如果该节点不是空节点
+            S.push(x); //把该节点压入栈中（事实上只能是根节点）
+        }
+        while (!S.empty()) { //如果栈不是空的
+            x = S.pop(); //弹出栈顶的节点，并访问
+            std::cout << x->data << " ";//<< std::endl;
+            if (x->rChild != nullptr) S.push(x->rChild);
+            if (x->lChild != nullptr) S.push(x->lChild);
+        }
+    }
+
+    static void visitAlongLeftBranch(BinNodePosi(T)x, Stack<BinNodePosi(T)> &S) {
+        while (x) {
+            std::cout << x->data << " ";
+            S.push(x->rChild);
+            x = x->lChild;
+        }
+    }
+
+    void travPre_Stack2(BinNodePosi(T)x) {  //先序遍历（迭代版1）
+        Stack<BinNodePosi(T)> S; //引入记录节点位置的辅助栈
+        while (!S.empty()) { //如果栈不是空的
+            x = S.pop(); //弹出栈顶的节点，并访问
+            std::cout << x->data << " ";//<< std::endl;
+            if (x->rChild != nullptr) S.push(x->rChild);
+            if (x->lChild != nullptr) S.push(x->lChild);
+        }
+    }
 
 };
 
